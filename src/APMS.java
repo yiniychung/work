@@ -18,8 +18,7 @@ public class APMS {
                 factories[i] = (Factory)Class.forName(factoryName[i]).newInstance();
                 factories[i].setRecord(record);
             }
-            boolean run = true;
-            while (run) {
+            while (true) {
                 System.out.println("Advanced Security Management System");
                 System.out.println("Please enter command: [n | s | d | w | c | u | r | l | q]");
                 System.out.println("n = create security, s = show security, d = deposit security, " +
@@ -34,7 +33,8 @@ public class APMS {
                         command = factories[1].create();
                         break;
                     case "q":
-                        run = false;
+                        System.out.println("Leaving System...");
+                        System.exit(0);
                         break;
                 }
                 command.execute();

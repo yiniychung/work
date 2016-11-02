@@ -49,6 +49,19 @@ public class DisplayCommand implements Command {
         }
     }
     public void allPrint() {
-
+        System.out.println("Security information");
+        System.out.printf("%-10s %-30s %-10s %-20s\n", "Code", "Name", "Quantity", "Other Info");
+        for (int i=0;i<record.size();i++) {
+            Security security = (Security)record.elementAt(i);
+            String code = security.getCode();
+            String name = security.getName();
+            int quantity = security.getQuantity();
+            String other = "";
+            if (security instanceof Bond)
+                other = "Yield: " + String.valueOf(((Bond) security).getYield());
+            else if (security instanceof Stock)
+                other = "Exchange: " + ((Stock) security).getExchange();
+            System.out.printf("%-10s %-30s %-10s %-20s\n", code, name, quantity, other);
+        }
     }
 }
