@@ -3,7 +3,7 @@ import java.util.Vector;
 /**
  * Created by nanasemaru on 2/11/2016.
  */
-public class CreateCommandFactory extends Factory {
+public class DisplayCommandFactory extends Factory {
     Vector record;
 
     public void setRecord(Vector record) {
@@ -11,6 +11,6 @@ public class CreateCommandFactory extends Factory {
     }
 
     public Command create() {
-        return new CreateCommand(record);
+        return new DisplayCommand(record);
     }
 }

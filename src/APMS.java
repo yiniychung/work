@@ -6,27 +6,39 @@ import java.io.*;
 
 public class APMS {
     public static void main(String[]args) {
-        String [] factoryName = {"CreateCommandFactory"};
+        String [] factoryName = {"CreateCommandFactory", "DisplayCommandFactory"};
         Factory [] factories = new Factory[factoryName.length];
         Command command = null;
+        Vector record = new Vector();
         InputStreamReader is = new InputStreamReader(System.in);
         BufferedReader br = new BufferedReader(is);
 
         try {
             for (int i=0;i<factories.length;i++) {
                 factories[i] = (Factory)Class.forName(factoryName[i]).newInstance();
+                factories[i].setRecord(record);
             }
-            System.out.println("Advanced Security Management System");
-            System.out.println("Please enter command: [n | s | d | w | c | u | r | l | q]");
-            System.out.println("n = create security, s = show security, d = deposit security, " +
-                    "w = withdraw security, u = undo, r = redo, l = list undo/redo, " +
-                    "q = exit system\n");
-            String input = br.readLine();
-            switch (input) {
-                case "n":
-                    command = factories[0].create();
+            boolean run = true;
+            while (run) {
+                System.out.println("Advanced Security Management System");
+                System.out.println("Please enter command: [n | s | d | w | c | u | r | l | q]");
+                System.out.println("n = create security, s = show security, d = deposit security, " +
+                        "w = withdraw security, u = undo, r = redo, l = list undo/redo, " +
+                        "q = exit system\n");
+                String input = br.readLine();
+                switch (input) {
+                    case "n":
+                        command = factories[0].create();
+                        break;
+                    case "s":
+                        command = factories[1].create();
+                        break;
+                    case "q":
+                        run = false;
+                        break;
+                }
+                command.execute();
             }
-            command.execute();
         } catch (Exception e) {
             e.printStackTrace();
         }
