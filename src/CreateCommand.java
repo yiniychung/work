@@ -25,7 +25,7 @@ public class CreateCommand implements Command {
             String type = br.readLine();
             if (type.equals("bo")) {
                 System.out.println("Enter code, name and yield:");
-                security = new Bond(br.readLine(), br.readLine(), Integer.parseInt(br.readLine()));
+                security = new Bond(br.readLine(), br.readLine(), Float.valueOf(br.readLine()));
             } else if (type.equals("st")) {
                 System.out.println("Enter code, name and stock exchange:");
                 security = new Stock(br.readLine(), br.readLine(), br.readLine());

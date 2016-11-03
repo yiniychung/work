@@ -30,7 +30,6 @@ public class DisplayCommand implements Command {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     public void singlePrint(String code) {
@@ -48,6 +47,7 @@ public class DisplayCommand implements Command {
             }
         }
     }
+
     public void allPrint() {
         System.out.println("Security information");
         System.out.printf("%-10s %-30s %-10s %-20s\n", "Code", "Name", "Quantity", "Other Info");
