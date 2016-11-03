@@ -6,7 +6,7 @@ import java.io.*;
 
 public class APMS {
     public static void main(String[]args) {
-        String [] factoryName = {"CreateCommandFactory", "DisplayCommandFactory", "DepositCommandFactory"};
+        String [] factoryName = {"CreateCommandFactory", "DisplayCommandFactory", "DepositCommandFactory", "WithdrawCommandFactory"};
         Factory [] factories = new Factory[factoryName.length];
         Command command = null;
         Vector record = new Vector();
@@ -35,9 +35,14 @@ public class APMS {
                     case "d":
                         command = factories[2].create();
                         break;
+                    case "w":
+                        command = factories[3].create();
+                        break;
                     case "q":
                         System.out.println("Leaving System...");
                         System.exit(0);
+                        break;
+                    default:
                         break;
                 }
                 command.execute();
