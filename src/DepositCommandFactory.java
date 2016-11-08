@@ -35,10 +35,11 @@ public class DepositCommandFactory extends Factory {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if (!getCode) {
+        if (getCode)
+            return new DepositCommand(security, quantity);
+        else {
             System.out.println("No such code");
             return null;
-        } else
-            return new DepositCommand(security, quantity);
+        }
     }
 }

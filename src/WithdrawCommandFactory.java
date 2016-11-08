@@ -1,3 +1,7 @@
+import Portfolio.Security;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.Vector;
 
 /**
@@ -11,6 +15,29 @@ public class WithdrawCommandFactory extends Factory {
     }
 
     public Command create() {
-        return new WithdrawCommand(record);
+        Security security = null;
+        String code = null;
+        int quantity = 0;
+        boolean getCode = false;
+        try {
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            System.out.println("Enter code:");
+            code = br.readLine();
+            for (int i=0;i<record.size();i++) {
+                security = (Security) record.elementAt(i);
+                if (code.equals(security.getCode())) {
+                    System.out.println("Quantity to withdraw:");
+                    quantity = Integer.parseInt(br.readLine());
+                    getCode = true;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (getCode)
+            return new WithdrawCommand(security, code, quantity);
+        else {
+            return null;
+        }
     }
 }

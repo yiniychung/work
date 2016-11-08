@@ -19,7 +19,7 @@ public class DepositCommand implements Command {
     public void execute() {
         try {
             int newQuantity = security.getQuantity() + quantity;
-            security.setQuantity(quantity);
+            security.setQuantity(newQuantity);
             System.out.println("Deposited " + quantity + " to " + security.getCode() +
                                 ". Current quantity is " + newQuantity + ".\n");
         } catch (Exception e) {
