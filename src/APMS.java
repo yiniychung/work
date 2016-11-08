@@ -10,6 +10,8 @@ public class APMS {
         Factory [] factories = new Factory[factoryName.length];
         Command command = null;
         Vector record = new Vector();
+        Caretaker caretaker = new Caretaker();
+        Originator originator = new Originator();
         InputStreamReader is = new InputStreamReader(System.in);
         BufferedReader br = new BufferedReader(is);
 
