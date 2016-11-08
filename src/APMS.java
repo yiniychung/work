@@ -7,7 +7,7 @@ import java.io.*;
 public class APMS {
     public static void main(String[]args) {
         String [] factoryName = {"CreateCommandFactory", "DisplayCommandFactory", "DepositCommandFactory", "WithdrawCommandFactory"};
-        Factory [] factories = new Factory[factoryName.length];
+        CommandFactory[] factories = new CommandFactory[factoryName.length];
         Command command = null;
         Vector record = new Vector();
         Caretaker caretaker = new Caretaker();
@@ -17,7 +17,7 @@ public class APMS {
 
         try {
             for (int i=0;i<factories.length;i++) {
-                factories[i] = (Factory)Class.forName(factoryName[i]).newInstance();
+                factories[i] = (CommandFactory)Class.forName(factoryName[i]).newInstance();
                 factories[i].setRecord(record);
             }
             while (true) {

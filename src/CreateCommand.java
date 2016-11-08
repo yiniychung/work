@@ -12,23 +12,25 @@ import java.util.Vector;
 public class CreateCommand implements Command {
     Vector record;
     Security security;
+    String type;
+    SecurityFactory securityFactory;
+
     InputStreamReader is = new InputStreamReader(System.in);
     BufferedReader br = new BufferedReader(is);
 
-    public CreateCommand(Vector record) {
+    public CreateCommand(Vector record, String type) {
         this.record = record;
+        this.type = type;
     }
 
     public void execute() {
         try {
-            System.out.println("Enter security type(bo=bond/st=stock):");
-            String type = br.readLine();
             if (type.equals("bo")) {
-                System.out.println("Enter code, name and yield:");
-                security = new Bond(br.readLine(), br.readLine(), Float.valueOf(br.readLine()));
+                securityFactory = new BondFactory();
+                security = securityFactory.create();
             } else if (type.equals("st")) {
-                System.out.println("Enter code, name and stock exchange:");
-                security = new Stock(br.readLine(), br.readLine(), br.readLine());
+                securityFactory = new StockFactory();
+                security = securityFactory.create();
             }
             record.add(security);
             System.out.println("New security record created.\n");

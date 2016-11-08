@@ -7,7 +7,7 @@ import java.util.Vector;
 /**
  * Created by nanasemaru on 3/11/2016.
  */
-public class WithdrawCommandFactory extends Factory {
+public class WithdrawCommandFactory extends CommandFactory {
     Vector record;
 
     public void setRecord(Vector record) {

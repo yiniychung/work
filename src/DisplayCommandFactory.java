@@ -5,7 +5,7 @@ import java.util.Vector;
 /**
  * Created by nanasemaru on 2/11/2016.
  */
-public class DisplayCommandFactory extends Factory {
+public class DisplayCommandFactory extends CommandFactory {
     Vector record;
 
     public void setRecord(Vector record) {
