@@ -47,7 +47,8 @@ public class APMS {
                     default:
                         break;
                 }
-                command.execute();
+                if (command!=null)
+                    command.execute();
             }
         } catch (Exception e) {
             e.printStackTrace();

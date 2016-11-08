@@ -1,3 +1,5 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.Vector;
 
 /**
@@ -11,6 +13,14 @@ public class DisplayCommandFactory extends Factory {
     }
 
     public Command create() {
-        return new DisplayCommand(record);
+        String code = null;
+        try {
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            System.out.println("Enter code(## to show all)");
+            code = br.readLine();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new DisplayCommand(record, code);
     }
 }

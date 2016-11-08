@@ -18,4 +18,8 @@ public class Bond extends Security {
     public void setYield(float yield) {
         this.yield = yield;
     }
+
+    public String toString() {
+        return "Yield: " + getYield();
+    }
 }

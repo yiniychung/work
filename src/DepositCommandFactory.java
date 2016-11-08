@@ -32,12 +32,13 @@ public class DepositCommandFactory extends Factory {
                     break;
                 }
             }
-            if (!getCode) {
-                System.out.println("No such code");
-            }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return new DepositCommand(security, quantity);
+        if (!getCode) {
+            System.out.println("No such code");
+            return null;
+        } else
+            return new DepositCommand(security, quantity);
     }
 }

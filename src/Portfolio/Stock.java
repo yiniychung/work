@@ -18,4 +18,8 @@ public class Stock extends Security {
     public void setExchange(String exchange) {
         this.exchange = exchange;
     }
+
+    public String toString() {
+        return "Exchange: " + getExchange();
+    }
 }

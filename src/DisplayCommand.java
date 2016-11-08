@@ -2,8 +2,6 @@ import Portfolio.Bond;
 import Portfolio.Security;
 import Portfolio.Stock;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.util.Vector;
 
 /**
@@ -11,24 +9,18 @@ import java.util.Vector;
  */
 public class DisplayCommand implements Command {
     Vector record;
-    InputStreamReader is = new InputStreamReader(System.in);
-    BufferedReader br = new BufferedReader(is);
+    String code;
 
-    public DisplayCommand(Vector record) {
+    public DisplayCommand(Vector record, String code) {
         this.record = record;
+        this.code = code;
     }
 
     public void execute() {
-        try {
-            System.out.println("Enter code(## to show all)");
-            String code = br.readLine();
-            if (code.equals("##")) {
-                allPrint();
-            } else {
-                singlePrint(code);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (code.equals("##")) {
+            allPrint();
+        } else {
+            singlePrint(code);
         }
     }
 
@@ -40,10 +32,7 @@ public class DisplayCommand implements Command {
                 System.out.println("Code: " + security.getCode());
                 System.out.println("Name: " + security.getName());
                 System.out.println("Quantity: " + security.getQuantity());
-                if (security instanceof Bond)
-                    System.out.println("Yield: " + ((Bond) security).getYield());
-                else if (security instanceof Stock)
-                    System.out.println("Stock exchange: " + ((Stock) security).getExchange() + "\n");
+                System.out.println(security.toString());
             }
         }
     }
@@ -56,11 +45,7 @@ public class DisplayCommand implements Command {
             String code = security.getCode();
             String name = security.getName();
             int quantity = security.getQuantity();
-            String other = "";
-            if (security instanceof Bond)
-                other = "Yield: " + String.valueOf(((Bond) security).getYield());
-            else if (security instanceof Stock)
-                other = "Exchange: " + ((Stock) security).getExchange();
+            String other = security.toString();
             System.out.printf("%-10s %-30s %-10s %-20s\n", code, name, quantity, other);
         }
     }
