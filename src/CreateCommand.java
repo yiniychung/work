@@ -9,28 +9,35 @@ import java.util.Vector;
  */
 public class CreateCommand implements UndoableCommand {
     Vector record;
-    Security security;
+    Security security = null;
     String type;
     SecurityFactory securityFactory;
+    Caretaker caretaker;
 
-    public CreateCommand(Vector record, String type) {
+    public CreateCommand(Vector record, String type, Caretaker caretaker) {
         this.record = record;
         this.type = type;
+        this.caretaker = caretaker;
     }
 
     public void execute() {
         try {
-            if (type.equals("bo")) {
-                securityFactory = new BondFactory();
-                security = securityFactory.create();
-            } else if (type.equals("st")) {
-                securityFactory = new StockFactory();
-                security = securityFactory.create();
-            } else {
-                security = null;
+            if (security==null) {
+                if (type.equals("bo")) {
+                    securityFactory = new BondFactory();
+                    security = securityFactory.create();
+                } else if (type.equals("st")) {
+                    securityFactory = new StockFactory();
+                    security = securityFactory.create();
+                } else {
+                    System.out.println("No such type");
+                }
             }
-            record.add(security);
-            System.out.println("New security record created.\n");
+            if (security!=null) {
+                record.add(security);
+                //caretaker.add(this);
+                System.out.println("New security record created.\n");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -41,7 +48,7 @@ public class CreateCommand implements UndoableCommand {
     }
 
     public void restore() {
-
+        record.remove(security);
     }
 
     public String toString() {

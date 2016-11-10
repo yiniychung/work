@@ -28,7 +28,7 @@ public class DepositCommand implements UndoableCommand {
     }
 
     public Memento save() {
-        return null;
+        return new Memento(quantity);
     }
 
     public void restore() {

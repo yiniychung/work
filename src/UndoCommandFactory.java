@@ -1,9 +1,9 @@
 import java.util.Vector;
 
 /**
- * Created by nanasemaru on 9/11/2016.
+ * Created by nanasemaru on 10/11/2016.
  */
-public class ListFactory extends CommandFactory {
+public class UndoCommandFactory extends CommandFactory {
     Caretaker caretaker;
 
     public void setRecord(Vector record) {
@@ -15,6 +15,6 @@ public class ListFactory extends CommandFactory {
     }
 
     public Command create() {
-        return new ListCommand(caretaker.getUndoList(), caretaker.getRedoList());
+        return new UndoCommand(caretaker);
     }
 }

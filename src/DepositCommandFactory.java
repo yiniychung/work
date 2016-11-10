@@ -15,7 +15,7 @@ public class DepositCommandFactory extends CommandFactory {
     }
 
     @Override
-    public void setCareTaker(Caretaker careTaker) {
+    public void setCaretaker(Caretaker caretaker) {
 
     }
 

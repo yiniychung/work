@@ -4,7 +4,7 @@ import java.util.Vector;
  * Created by nanasemaru on 3/11/2016.
  */
 public class Caretaker {
-    private Vector undoList, redoList;
+    private Vector<UndoableCommand> undoList, redoList;
 
     public Caretaker() {
         undoList = new Vector();
@@ -13,14 +13,18 @@ public class Caretaker {
 
     public void add(UndoableCommand command) {
         undoList.add(command);
+        if (redoList.size()>0)
+            redoList.clear();
     }
 
     public void undo() {
+        undoList.lastElement().restore();
         redoList.add(undoList.lastElement());
         undoList.removeElement(undoList.lastElement());
     }
 
     public void redo() {
+        redoList.lastElement().execute();
         undoList.add(redoList.lastElement());
         redoList.removeElement(redoList.lastElement());
     }

@@ -6,7 +6,8 @@ import java.io.*;
 
 public class APMS {
     public static void main(String[]args) {
-        String [] factoryName = {"CreateCommandFactory", "DisplayCommandFactory", "DepositCommandFactory", "WithdrawCommandFactory", "ListFactory"};
+        String [] factoryName = {"CreateCommandFactory", "DisplayCommandFactory", "DepositCommandFactory", "WithdrawCommandFactory",
+                                    "UndoCommandFactory", "RedoCommandFactory", "ListFactory"};
         CommandFactory[] factories = new CommandFactory[factoryName.length];
         Command command = null;
         Vector record = new Vector();
@@ -18,7 +19,7 @@ public class APMS {
             for (int i=0;i<factories.length;i++) {
                 factories[i] = (CommandFactory)Class.forName(factoryName[i]).newInstance();
                 factories[i].setRecord(record);
-                factories[i].setCareTaker(caretaker);
+                factories[i].setCaretaker(caretaker);
             }
             while (true) {
                 System.out.println("Advanced Security Management System");
@@ -41,11 +42,13 @@ public class APMS {
                         command = factories[3].create();
                         break;
                     case "u": //TODO
+                        command = factories[4].create();
                         break;
                     case "r": //TODO
+                        command = factories[5].create();
                         break;
                     case "l": //TODO
-                        command = factories[4].create();
+                        command = factories[6].create();
                         break;
                     case "q":
                         System.out.println("Leaving System...");

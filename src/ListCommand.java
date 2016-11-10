@@ -15,7 +15,7 @@ public class ListCommand implements Command {
 
     public void execute() {
         System.out.println("Undo List:");
-        if (undoList != null) {
+        if (undoList.size() != 0) {
             for (int i = 0; i < undoList.size(); i++) {
                 UndoableCommand command = (UndoableCommand) undoList.elementAt(i);
                 System.out.println(command.toString());
@@ -24,12 +24,12 @@ public class ListCommand implements Command {
             System.out.println("Empty");
         }
         System.out.println("\nRedo List:");
-        if (redoList != null) {
+        if (redoList.size() != 0) {
             for (int i = 0; i < redoList.size(); i++) {
                 UndoableCommand command = (UndoableCommand) redoList.elementAt(i);
                 System.out.println(command.toString());
             }
         } else
-            System.out.println("Empty");
+            System.out.println("Empty\n");
     }
 }

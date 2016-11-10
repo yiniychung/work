@@ -10,14 +10,14 @@ import java.util.Vector;
  */
 public class CreateCommandFactory extends CommandFactory {
     Vector record;
+    Caretaker caretaker;
 
     public void setRecord(Vector record) {
         this.record = record;
     }
 
-    @Override
-    public void setCareTaker(Caretaker careTaker) {
-
+    public void setCaretaker(Caretaker caretaker) {
+        this.caretaker = caretaker;
     }
 
     public Command create() {
@@ -29,6 +29,6 @@ public class CreateCommandFactory extends CommandFactory {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return new CreateCommand(record, type);
+        return new CreateCommand(record, type, caretaker);
     }
 }
