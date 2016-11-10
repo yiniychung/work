@@ -43,11 +43,7 @@ public class CreateCommand implements UndoableCommand {
         }
     }
 
-    public Memento save() {
-        return null;
-    }
-
-    public void restore() {
+    public void undo() {
         record.remove(security);
     }
 

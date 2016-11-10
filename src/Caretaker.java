@@ -18,7 +18,7 @@ public class Caretaker {
     }
 
     public void undo() {
-        undoList.lastElement().restore();
+        undoList.lastElement().undo();
         redoList.add(undoList.lastElement());
         undoList.removeElement(undoList.lastElement());
     }

@@ -9,7 +9,6 @@ public class UndoCommand implements Command {
     }
 
     public void execute() {
-        System.out.println(caretaker.getUndoList());
         if (caretaker.getUndoList().size()!=0) {
             caretaker.undo();
             System.out.println("Undo completed");
