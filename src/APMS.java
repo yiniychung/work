@@ -6,12 +6,11 @@ import java.io.*;
 
 public class APMS {
     public static void main(String[]args) {
-        String [] factoryName = {"CreateCommandFactory", "DisplayCommandFactory", "DepositCommandFactory", "WithdrawCommandFactory"};
+        String [] factoryName = {"CreateCommandFactory", "DisplayCommandFactory", "DepositCommandFactory", "WithdrawCommandFactory", "ListFactory"};
         CommandFactory[] factories = new CommandFactory[factoryName.length];
         Command command = null;
         Vector record = new Vector();
         Caretaker caretaker = new Caretaker();
-        Originator originator = new Originator();
         InputStreamReader is = new InputStreamReader(System.in);
         BufferedReader br = new BufferedReader(is);
 
@@ -19,6 +18,7 @@ public class APMS {
             for (int i=0;i<factories.length;i++) {
                 factories[i] = (CommandFactory)Class.forName(factoryName[i]).newInstance();
                 factories[i].setRecord(record);
+                factories[i].setCareTaker(caretaker);
             }
             while (true) {
                 System.out.println("Advanced Security Management System");
@@ -40,6 +40,13 @@ public class APMS {
                     case "w":
                         command = factories[3].create();
                         break;
+                    case "u": //TODO
+                        break;
+                    case "r": //TODO
+                        break;
+                    case "l": //TODO
+                        command = factories[4].create();
+                        break;
                     case "q":
                         System.out.println("Leaving System...");
                         System.exit(0);
@@ -47,8 +54,12 @@ public class APMS {
                     default:
                         break;
                 }
-                if (command!=null)
+                if (command!=null) {
                     command.execute();
+                    if (command instanceof UndoableCommand)
+                        caretaker.add(((UndoableCommand) command));
+                }
+                command = null;
             }
         } catch (Exception e) {
             e.printStackTrace();

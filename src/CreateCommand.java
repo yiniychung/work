@@ -1,6 +1,4 @@
-import Portfolio.Bond;
 import Portfolio.Security;
-import Portfolio.Stock;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -9,14 +7,11 @@ import java.util.Vector;
 /**
  * Created by nanasemaru on 2/11/2016.
  */
-public class CreateCommand implements Command {
+public class CreateCommand implements UndoableCommand {
     Vector record;
     Security security;
     String type;
     SecurityFactory securityFactory;
-
-    InputStreamReader is = new InputStreamReader(System.in);
-    BufferedReader br = new BufferedReader(is);
 
     public CreateCommand(Vector record, String type) {
         this.record = record;
@@ -31,11 +26,25 @@ public class CreateCommand implements Command {
             } else if (type.equals("st")) {
                 securityFactory = new StockFactory();
                 security = securityFactory.create();
+            } else {
+                security = null;
             }
             record.add(security);
             System.out.println("New security record created.\n");
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public Memento save() {
+        return null;
+    }
+
+    public void restore() {
+
+    }
+
+    public String toString() {
+        return "Create " + security.getCode();
     }
 }

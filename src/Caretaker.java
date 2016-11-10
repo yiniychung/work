@@ -11,8 +11,8 @@ public class Caretaker {
         redoList = new Vector();
     }
 
-    public void save(Memento state) {
-        undoList.add(state);
+    public void add(UndoableCommand command) {
+        undoList.add(command);
     }
 
     public void undo() {
@@ -23,5 +23,13 @@ public class Caretaker {
     public void redo() {
         undoList.add(redoList.lastElement());
         redoList.removeElement(redoList.lastElement());
+    }
+
+    public Vector getUndoList() {
+        return undoList;
+    }
+
+    public Vector getRedoList() {
+        return redoList;
     }
 }

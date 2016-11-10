@@ -10,8 +10,14 @@ import java.util.Vector;
 public class WithdrawCommandFactory extends CommandFactory {
     Vector record;
 
+
     public void setRecord(Vector record) {
         this.record = record;
+    }
+
+    @Override
+    public void setCareTaker(Caretaker careTaker) {
+
     }
 
     public Command create() {

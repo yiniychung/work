@@ -5,5 +5,6 @@ import java.util.Vector;
  */
 public abstract class CommandFactory {
     public abstract void setRecord(Vector record);
+    public abstract void setCareTaker(Caretaker careTaker);
     public abstract Command create();
 }

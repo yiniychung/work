@@ -12,6 +12,11 @@ public class DisplayCommandFactory extends CommandFactory {
         this.record = record;
     }
 
+    @Override
+    public void setCareTaker(Caretaker careTaker) {
+
+    }
+
     public Command create() {
         String code = null;
         try {

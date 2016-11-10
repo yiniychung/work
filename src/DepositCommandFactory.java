@@ -14,6 +14,11 @@ public class DepositCommandFactory extends CommandFactory {
         this.record = record;
     }
 
+    @Override
+    public void setCareTaker(Caretaker careTaker) {
+
+    }
+
     public Command create() {
         Security security = null;
         int quantity = 0;

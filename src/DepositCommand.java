@@ -7,7 +7,7 @@ import java.util.Vector;
 /**
  * Created by nanasemaru on 3/11/2016.
  */
-public class DepositCommand implements Command {
+public class DepositCommand implements UndoableCommand {
     private Security security;
     private int quantity;
 
@@ -25,5 +25,13 @@ public class DepositCommand implements Command {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public Memento save() {
+        return null;
+    }
+
+    public void restore() {
+
     }
 }
