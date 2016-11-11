@@ -17,13 +17,13 @@ public class WithdrawCommand implements UndoableCommand {
         this.security = security;
         this.code = code;
         this.quantity = quantity;
-        memento = new Memento();
+
     }
 
     public void execute() {
         int newQuantity;
         if ((security.getQuantity() - quantity)>0) {
-            memento.setQuantity(quantity);
+            memento = new Memento(security);
             newQuantity = security.getQuantity() - quantity;
             security.setQuantity(newQuantity);
             System.out.println("Deposited " + quantity + " to " + code +
@@ -35,11 +35,10 @@ public class WithdrawCommand implements UndoableCommand {
     }
 
     public void undo() {
-        this.quantity = memento.getQuantity();
-        security.setQuantity(security.getQuantity() + quantity);
+        memento.restore();
     }
 
     public String toString() {
-        return "Withdraw " + quantity;
+        return "Withdraw " + quantity  + " " + security.getCode();
     }
 }
