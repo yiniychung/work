@@ -11,6 +11,7 @@ public class DepositCommand implements UndoableCommand {
     private Security security;
     private int quantity;
     private Memento memento;
+    private boolean isSuccess = false;
 
     public DepositCommand(Security security, int quantity) {
         this.security = security;
@@ -22,6 +23,7 @@ public class DepositCommand implements UndoableCommand {
             memento = new Memento(security);
             int newQuantity = security.getQuantity() + quantity;
             security.setQuantity(newQuantity);
+            isSuccess = true;
             System.out.println("Deposited " + quantity + " to " + security.getCode() +
                                 ". Current quantity is " + newQuantity + ".\n");
         } catch (Exception e) {
@@ -31,6 +33,11 @@ public class DepositCommand implements UndoableCommand {
 
     public void undo() {
         memento.restore();
+    }
+
+    @Override
+    public boolean isSuccess() {
+        return isSuccess;
     }
 
     public String toString() {

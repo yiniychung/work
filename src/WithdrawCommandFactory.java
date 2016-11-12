@@ -43,6 +43,7 @@ public class WithdrawCommandFactory extends CommandFactory {
         if (getCode)
             return new WithdrawCommand(security, code, quantity);
         else {
+            System.out.println("No such code\n");
             return null;
         }
     }

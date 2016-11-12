@@ -12,6 +12,7 @@ public class WithdrawCommand implements UndoableCommand {
     int quantity;
     Security security;
     Memento memento;
+    private boolean isSuccess = false;
 
     public WithdrawCommand(Security security, String code, int quantity) {
         this.security = security;
@@ -26,6 +27,7 @@ public class WithdrawCommand implements UndoableCommand {
             memento = new Memento(security);
             newQuantity = security.getQuantity() - quantity;
             security.setQuantity(newQuantity);
+            isSuccess = true;
             System.out.println("Deposited " + quantity + " to " + code +
                     ". Current quantity is " + newQuantity + ".\n");
         }
@@ -36,6 +38,11 @@ public class WithdrawCommand implements UndoableCommand {
 
     public void undo() {
         memento.restore();
+    }
+
+    @Override
+    public boolean isSuccess() {
+        return isSuccess;
     }
 
     public String toString() {

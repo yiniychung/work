@@ -41,13 +41,13 @@ public class APMS {
                     case "w":
                         command = factories[3].create();
                         break;
-                    case "u": //TODO
+                    case "u":
                         command = factories[4].create();
                         break;
-                    case "r": //TODO
+                    case "r":
                         command = factories[5].create();
                         break;
-                    case "l": //TODO
+                    case "l":
                         command = factories[6].create();
                         break;
                     case "q":
@@ -55,12 +55,14 @@ public class APMS {
                         System.exit(0);
                         break;
                     default:
+                        System.out.println("Invalid command\n");
                         break;
                 }
                 if (command!=null) {
                     command.execute();
                     if (command instanceof UndoableCommand)
-                        caretaker.add(((UndoableCommand) command));
+                        if (((UndoableCommand) command).isSuccess())
+                            caretaker.add(((UndoableCommand) command));
                 }
                 command = null;
             }

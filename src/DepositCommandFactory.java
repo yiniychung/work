@@ -43,7 +43,7 @@ public class DepositCommandFactory extends CommandFactory {
         if (getCode)
             return new DepositCommand(security, quantity);
         else {
-            System.out.println("No such code");
+            System.out.println("No such code\n");
             return null;
         }
     }

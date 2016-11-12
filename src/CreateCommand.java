@@ -1,7 +1,5 @@
 import Portfolio.Security;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.util.Vector;
 
 /**
@@ -12,7 +10,8 @@ public class CreateCommand implements UndoableCommand {
     Security security = null;
     String type;
     SecurityFactory securityFactory;
-    Caretaker caretaker;
+    Caretaker caretaker; //del
+    boolean isSuccess = false;
 
     public CreateCommand(Vector record, String type, Caretaker caretaker) {
         this.record = record;
@@ -24,18 +23,19 @@ public class CreateCommand implements UndoableCommand {
         try {
             if (security==null) {
                 if (type.equals("bo")) {
-                    securityFactory = new BondFactory();
+                    securityFactory = new BondFactory(record);
                     security = securityFactory.create();
                 } else if (type.equals("st")) {
-                    securityFactory = new StockFactory();
+                    securityFactory = new StockFactory(record);
                     security = securityFactory.create();
                 } else {
-                    System.out.println("No such type");
+                    System.out.println("No such type\n");
+                    return;
                 }
             }
             if (security!=null) {
                 record.add(security);
-                //caretaker.add(this);
+                isSuccess = true;
                 System.out.println("New security record created.\n");
             }
         } catch (Exception e) {
@@ -45,6 +45,11 @@ public class CreateCommand implements UndoableCommand {
 
     public void undo() {
         record.remove(security);
+    }
+
+    @Override
+    public boolean isSuccess() {
+        return isSuccess;
     }
 
     public String toString() {

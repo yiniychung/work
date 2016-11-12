@@ -21,6 +21,10 @@ public class DisplayCommandFactory extends CommandFactory {
         String code = null;
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            if (record.size()==0) {
+                System.out.println("No security record\n");
+                return null;
+            }
             System.out.println("Enter code(## to show all)");
             code = br.readLine();
         } catch (Exception e) {
