@@ -35,8 +35,9 @@ public class CreateCommand implements UndoableCommand {
             }
             if (security!=null) {
                 record.add(security);
+                if (!isSuccess)
+                    System.out.println("New security record created.\n");
                 isSuccess = true;
-                System.out.println("New security record created.\n");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -48,7 +49,7 @@ public class CreateCommand implements UndoableCommand {
     }
 
     @Override
-    public boolean isSuccess() {
+    public boolean commandSuccess() {
         return isSuccess;
     }
 

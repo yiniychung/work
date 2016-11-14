@@ -21,12 +21,12 @@ public class StockFactory extends SecurityFactory {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         try {
-            System.out.println("Enter code, name and yield:");
+            System.out.println("Enter code, name and exchange:");
             String [] inputs = br.readLine().split(",");
             for (int i=0;i<record.size();i++) {
                 security = (Security) record.elementAt(i);
                 if (inputs[0].equals(security.getCode())) {
-                    System.out.println("Code already exist");
+                    System.out.println("Code already existed");
                     return null;
                 }
             }

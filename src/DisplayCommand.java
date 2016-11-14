@@ -33,6 +33,7 @@ public class DisplayCommand implements Command {
                 System.out.println("Name: " + security.getName());
                 System.out.println("Quantity: " + security.getQuantity());
                 System.out.println(security.toString());
+                break;
             } else {
                 System.out.println("No such code");
             }

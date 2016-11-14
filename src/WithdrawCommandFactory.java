@@ -32,13 +32,21 @@ public class WithdrawCommandFactory extends CommandFactory {
             for (int i=0;i<record.size();i++) {
                 security = (Security) record.elementAt(i);
                 if (code.equals(security.getCode())) {
+                    getCode = true;
                     System.out.println("Quantity to withdraw:");
                     quantity = Integer.parseInt(br.readLine());
-                    getCode = true;
+                    if (quantity<=0) {
+                        System.out.println("Quantity must be positive integer.\n");
+                        return null;
+                    }
+                    break;
                 }
             }
+        } catch (NumberFormatException e) {
+            System.out.println("Quantity must be positive integer.\n");
+            return null;
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
         if (getCode)
             return new WithdrawCommand(security, code, quantity);

@@ -4,6 +4,7 @@ import java.util.Vector;
  * Created by nanasemaru on 3/11/2016.
  */
 public class Caretaker {
+    //save the undoable command
     private Vector<UndoableCommand> undoList, redoList;
 
     public Caretaker() {

@@ -9,7 +9,7 @@ import java.util.Vector;
  * Created by nanasemaru on 8/11/2016.
  */
 public class BondFactory extends SecurityFactory {
-    Vector record;
+    private Vector record;
 
     public BondFactory(Vector record) {
         this.record = record;
@@ -25,7 +25,7 @@ public class BondFactory extends SecurityFactory {
             for (int i=0;i<record.size();i++) {
                 security = (Security) record.elementAt(i);
                 if (inputs[0].equals(security.getCode())) {
-                    System.out.println("Code already exist");
+                    System.out.println("Code already existed");
                     return null;
                 }
             }

@@ -27,12 +27,13 @@ public class WithdrawCommand implements UndoableCommand {
             memento = new Memento(security);
             newQuantity = security.getQuantity() - quantity;
             security.setQuantity(newQuantity);
-            isSuccess = true;
-            System.out.println("Deposited " + quantity + " to " + code +
+            if (!isSuccess)
+                System.out.println("Deposited " + quantity + " to " + code +
                     ". Current quantity is " + newQuantity + ".\n");
+            isSuccess = true;
         }
         else {
-            System.out.println("Invalid quantity (current quantity < withdrawal quantity).");
+            System.out.println("Invalid quantity (current quantity < withdrawal quantity).\n");
         }
     }
 
@@ -41,7 +42,7 @@ public class WithdrawCommand implements UndoableCommand {
     }
 
     @Override
-    public boolean isSuccess() {
+    public boolean commandSuccess() {
         return isSuccess;
     }
 

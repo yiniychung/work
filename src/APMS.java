@@ -5,6 +5,7 @@ import java.util.*;
 import java.io.*;
 
 public class APMS {
+
     public static void main(String[]args) {
         String [] factoryName = {"CreateCommandFactory", "DisplayCommandFactory", "DepositCommandFactory", "WithdrawCommandFactory",
                                     "UndoCommandFactory", "RedoCommandFactory", "ListFactory"};
@@ -58,10 +59,13 @@ public class APMS {
                         System.out.println("Invalid command\n");
                         break;
                 }
+                //if factory create a command successfully
                 if (command!=null) {
                     command.execute();
+                    //if the command is undoable
                     if (command instanceof UndoableCommand)
-                        if (((UndoableCommand) command).isSuccess())
+                        //if no error occur
+                        if (((UndoableCommand) command).commandSuccess())
                             caretaker.add(((UndoableCommand) command));
                 }
                 command = null;

@@ -3,7 +3,6 @@
  */
 public interface UndoableCommand extends Command {
     void execute();
-    //Memento save();
     void undo();
-    boolean isSuccess();
+    boolean commandSuccess();
 }
